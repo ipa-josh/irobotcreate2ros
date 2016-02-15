@@ -262,13 +262,13 @@
       </geometry>
     </collision>
   </link>
-  <joint name="hokuyo_laser_joint" type="fixed">
+  <joint name="rplidar_laser_joint" type="fixed">
     <axis xyz="0 0 1"/>
-    <origin rpy="0 0 0" xyz="0 0 0.05"/>
+    <origin rpy="0 0 0" xyz="0.1 0 0.05"/>
     <parent link="base_link"/>
-    <child link="hokuyo_laser_link"/>
+    <child link="laser"/>
   </joint>
-  <link name="hokuyo_laser_link">
+  <link name="laser">
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -287,9 +287,9 @@
       <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6"/>
     </inertial>
   </link>
-  <gazebo reference="hokuyo_laser_link">
+  <gazebo reference="laser">
     <gravity>true</gravity>
-    <sensor name="head_hokuyo_sensor" type="ray">
+    <sensor name="head_rplidar_sensor" type="ray">
       <pose>0 0 0 0 0 0</pose>
       <visualize>true</visualize>
       <update_rate>40</update_rate>
@@ -308,10 +308,10 @@
           <resolution>0.01</resolution>
         </range>
       </ray>
-      <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_head_hokuyo_controller">
+      <plugin filename="libgazebo_ros_laser.so" name="gazebo_ros_head_rplidar_controller">
         <robotNamespace/>
         <topicName>laser_scan</topicName>
-        <frameName>hokuyo_laser_link</frameName>
+        <frameName>laser</frameName>
       </plugin>
     </sensor>
   </gazebo>
